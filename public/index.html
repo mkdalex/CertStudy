@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Exam Quiz Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="card">
+        <h1>AI Exam Quiz Generator</h1>
+        <p class="subtitle">
+          Type a topic like <strong>AZ-900</strong>, choose how many questions,
+          and generate a practice quiz.
+        </p>
+
+        <form id="quiz-form" class="form-row">
+          <div class="field field-wide">
+            <label for="topic">Topic / Exam</label>
+            <input
+              type="text"
+              id="topic"
+              name="topic"
+              placeholder="e.g. AZ-900"
+            />
+          </div>
+
+          <div class="field field-small">
+            <label for="count">Number of questions</label>
+            <input
+              type="number"
+              id="count"
+              name="count"
+              min="1"
+              max="15"
+              value="5"
+            />
+          </div>
+
+          <div class="field field-small">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty" name="difficulty">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="expert">Expert</option>
+            </select>
+          </div>
+
+          <div class="field field-button">
+            <label>&nbsp;</label>
+            <button type="submit" id="generate-btn">Generate Quiz</button>
+          </div>
+        </form>
+
+        <div id="status"></div>
+        <div id="cost-info"></div>
+
+        <!-- Selection context bubble -->
+        <div id="selection-helper" class="selection-helper hidden">
+          <button id="selection-explain-btn" type="button">Explain this</button>
+        </div>
+
+        <!-- Bottom-right study chat -->
+        <div id="explain-chat" class="explain-chat hidden">
+          <div class="explain-chat-header">
+            <span>Study helper</span>
+            <button
+              type="button"
+              id="explain-chat-close"
+              aria-label="Close"
+              class="explain-chat-close"
+            >
+              ×
+            </button>
+          </div>
+          <div id="explain-chat-messages" class="explain-chat-messages"></div>
+        </div>
+
+        <div id="quiz-container" class="hidden">
+          <h2 id="quiz-title"></h2>
+          <div id="questions"></div>
+          <button id="submit-answers-btn" class="hidden">Check Answers</button>
+          <div id="results"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-card">
+        <div class="loading-title">Generating your quiz…</div>
+        <div class="loading-subtitle">
+          Talking to GPT-5 mini, this can take a few seconds.
+        </div>
+
+        <div class="loading-bar">
+          <div class="loading-bar-inner"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
